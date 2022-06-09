@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClickUrl(View view)
     {
         Intent intent = new Intent(this, InfoUrlActivity.class);
+        intent.putExtra("article", article);
         startActivity(intent);
 //        Toast.makeText(this, article.getUrl(), Toast.LENGTH_LONG).show();
     }
