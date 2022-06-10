@@ -4,10 +4,11 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,13 +29,15 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
 
     class ArticleViewHolder extends RecyclerView.ViewHolder {
         TextView tvLigne;
-        ConstraintLayout clArticle;
+        CardView cvArticle;//chgnt de ConstraintLayout clArticle;
+        RatingBar ratingBar;// ajout de la ratingBar
 
         //constructeur de la classe ArticleViewHolder
         public ArticleViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvLigne = itemView.findViewById(R.id.tv_nom);
-            clArticle = itemView.findViewById(R.id.cl_ligne);
+            tvLigne = itemView.findViewById(R.id.tv_nom); //bien donner le meme id a la TextView ds la CardView
+            ratingBar = itemView.findViewById(R.id.ratingBar);
+            cvArticle = itemView.findViewById(R.id.cv_art);//chgment de clArticle = itemView.findViewById(R.id.cl_ligne);
         }
     }
 
@@ -61,8 +64,10 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     @Override
     public ArticleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // transforme 1 layout en 1 vue
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.ligne_article, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_articles, parent, false);
         return new ArticleViewHolder(itemView);
+        //chgment de View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.ligne_article, parent, false);
+        //        return new ArticleViewHolder(itemView);
     }
 
     // va etre appeler a chq fois q'1 element de la liste est a afficher avec la "position"
@@ -70,7 +75,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     public void onBindViewHolder(@NonNull ArticleViewHolder holder, int position) {
         Article article = articles.get(position);
         holder.tvLigne.setText(article.getNom());
-        holder.clArticle.setOnClickListener(new onClickHandler(article));
+        holder.ratingBar.setRating(article.getNote()); // ajout de la ratingBar
+        holder.cvArticle.setOnClickListener(new onClickHandler(article));
 
 
 
