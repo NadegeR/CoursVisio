@@ -29,6 +29,9 @@ public class ListeArticlesActivity extends AppCompatActivity {
     Article a10 = new Article(10,"Flan",  "flan aux oeufs", "http://www.flan.fr",2.10F, 4.5F,false);
     Article a11 = new Article(11,"Kouign-Amann",  "Truc le plus gras du monde , que du beurre et du sucre", "http://www.kouign-amann.fr",3.00F, 4F,false);
     Article a12 = new Article(12,"Brownie",  "Pas mal ca depend ce qu'il y a dedans", "http://www.brownie.fr",2.20F, 3.5F,false);
+    Article a13 = new Article(13,"Cupcake",  "Cupcake au chocolat", "http://www.cupcake.fr",1.10F, 4.5F,false);
+    Article a14 = new Article(14,"Fondant au chocolat",  "Cupcake au chocolat", "http://www.fondant.fr",1.10F, 4.5F,false);
+    Article a15 = new Article(15,"Eclair",  "Ecalir au chocolat ou au cafe", "http://www.eclair.fr",1.90F, 4.5F,false);
 
 
     @Override
@@ -48,6 +51,9 @@ public class ListeArticlesActivity extends AppCompatActivity {
         listeArticles.add(a10);
         listeArticles.add(a11);
         listeArticles.add(a12);
+        listeArticles.add(a13);
+        listeArticles.add(a14);
+        listeArticles.add(a15);
 
         RecyclerView recyclerView = findViewById(R.id.rv_listeA);
 

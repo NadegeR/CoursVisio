@@ -5,10 +5,11 @@
     <item
         android:id="@+id/imAdd"
         android:icon="@android:drawable/ic_input_add"
-        android:title="Item"
+        android:title="Ajouter"
         app:showAsAction="always" />
     <item
         android:id="@+id/imPreferences"
+        android:icon="@android:drawable/button_onoff_indicator_off"
         android:title="Preferences..."
-        />
+        app:showAsAction="never" />
 </menu>
