@@ -13,20 +13,22 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".AjoutArticleActivity">
+        tools:context=".AjoutArticleActivity"
+        android:padding="10dp">
 
 
         <TextView
             android:id="@+id/tvNon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
             android:text="Nom de l'article"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/tvPrix"
-            app:layout_constraintEnd_toStartOf="@+id/etNom"
-            app:layout_constraintHorizontal_bias="0.243"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.49" />
 
         <TextView
             android:id="@+id/tvURL"
@@ -44,7 +46,7 @@
             android:layout_height="wrap_content"
             android:text="Note"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btSave"
             app:layout_constraintStart_toStartOf="@+id/tvURL"
             app:layout_constraintTop_toBottomOf="@+id/tvURL" />
 
@@ -72,12 +74,13 @@
             android:id="@+id/etNom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="32dp"
             android:ems="10"
-            android:text="@{ajout.nom}"
             android:inputType="textPersonName"
+            android:text="@{ajout.nom}"
             app:layout_constraintBottom_toTopOf="@+id/etPrixArt"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvNon"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
@@ -85,10 +88,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="@{String.valueOf(ajout.prix)}"
             android:inputType="numberDecimal"
+            android:text="@{String.valueOf(ajout.prix)}"
             app:layout_constraintBottom_toTopOf="@+id/etDescArt"
             app:layout_constraintEnd_toEndOf="@+id/etNom"
+            app:layout_constraintStart_toStartOf="@+id/etNom"
             app:layout_constraintTop_toBottomOf="@+id/etNom" />
 
         <EditText
@@ -96,11 +100,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="@{ajout.description}"
             android:gravity="start|top"
             android:inputType="textMultiLine"
+            android:text="@{ajout.description}"
             app:layout_constraintBottom_toTopOf="@+id/edSite"
             app:layout_constraintEnd_toEndOf="@+id/etPrixArt"
+            app:layout_constraintStart_toStartOf="@+id/etPrixArt"
             app:layout_constraintTop_toBottomOf="@+id/etPrixArt" />
 
         <EditText
@@ -108,10 +113,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="@{ajout.url}"
             android:inputType="textPersonName"
+            android:text="@{ajout.url}"
             app:layout_constraintBottom_toTopOf="@+id/ratingBar2"
             app:layout_constraintEnd_toEndOf="@+id/etDescArt"
+            app:layout_constraintStart_toStartOf="@+id/etDescArt"
             app:layout_constraintTop_toBottomOf="@+id/etDescArt" />
 
         <RatingBar
@@ -122,9 +128,20 @@
             android:isIndicator="false"
             android:numStars="5"
             android:text="@{String.valueOf(ajout.note)}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btSave"
             app:layout_constraintEnd_toEndOf="@+id/edSite"
             app:layout_constraintTop_toBottomOf="@+id/edSite" />
+
+        <Button
+            android:id="@+id/btSave"
+            android:layout_width="109dp"
+            android:layout_height="55dp"
+            android:text="Save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNote" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
