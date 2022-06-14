@@ -13,22 +13,21 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".AjoutArticleActivity"
-        android:padding="10dp">
+        android:padding="10dp"
+        tools:context=".AjoutArticleActivity">
 
 
         <TextView
             android:id="@+id/tvNon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
             android:text="Nom de l'article"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/tvPrix"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.49" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvURL"
@@ -74,26 +73,26 @@
             android:id="@+id/etNom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@{ajout.nom}"
-            app:layout_constraintBottom_toTopOf="@+id/etPrixArt"
+            android:text="@={ajout.nom}"
+            app:layout_constraintBottom_toBottomOf="@+id/tvNon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvNon"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/tvNon" />
+
+
 
         <EditText
-            android:id="@+id/etPrixArt"
+            android:id="@+id/edSite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="numberDecimal"
-            android:text="@{String.valueOf(ajout.prix)}"
-            app:layout_constraintBottom_toTopOf="@+id/etDescArt"
-            app:layout_constraintEnd_toEndOf="@+id/etNom"
-            app:layout_constraintStart_toStartOf="@+id/etNom"
-            app:layout_constraintTop_toBottomOf="@+id/etNom" />
+            android:inputType="textPersonName"
+            android:text="@={ajout.url}"
+            app:layout_constraintBottom_toBottomOf="@+id/tvURL"
+            app:layout_constraintEnd_toEndOf="@+id/etDescArt"
+            app:layout_constraintTop_toTopOf="@+id/tvURL" />
 
         <EditText
             android:id="@+id/etDescArt"
@@ -102,46 +101,46 @@
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
-            android:text="@{ajout.description}"
-            app:layout_constraintBottom_toTopOf="@+id/edSite"
+            android:text="@={ajout.description}"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDescArt"
             app:layout_constraintEnd_toEndOf="@+id/etPrixArt"
-            app:layout_constraintStart_toStartOf="@+id/etPrixArt"
-            app:layout_constraintTop_toBottomOf="@+id/etPrixArt" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/tvDescArt"
+            app:layout_constraintTop_toTopOf="@+id/tvDescArt" />
 
         <EditText
-            android:id="@+id/edSite"
+            android:id="@+id/etPrixArt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@{ajout.url}"
-            app:layout_constraintBottom_toTopOf="@+id/ratingBar2"
-            app:layout_constraintEnd_toEndOf="@+id/etDescArt"
-            app:layout_constraintStart_toStartOf="@+id/etDescArt"
-            app:layout_constraintTop_toBottomOf="@+id/etDescArt" />
-
-        <RatingBar
-            android:id="@+id/ratingBar2"
-            style="@style/Widget.AppCompat.RatingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:isIndicator="false"
-            android:numStars="5"
-            android:text="@{String.valueOf(ajout.note)}"
-            app:layout_constraintBottom_toTopOf="@+id/btSave"
-            app:layout_constraintEnd_toEndOf="@+id/edSite"
-            app:layout_constraintTop_toBottomOf="@+id/edSite" />
+            android:inputType="numberDecimal"
+            android:text="@={ajout.prixString}"
+            app:layout_constraintBottom_toBottomOf="@+id/tvPrix"
+            app:layout_constraintEnd_toEndOf="@+id/etNom"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/tvPrix"
+            app:layout_constraintTop_toTopOf="@+id/tvPrix" />
 
         <Button
             android:id="@+id/btSave"
-            android:layout_width="109dp"
-            android:layout_height="55dp"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
             android:text="Save"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.51"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNote" />
+
+        <RatingBar
+            android:id="@+id/ratingBar3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="112dp"
+            android:rating="@={ajout.note}"
+            app:layout_constraintBottom_toBottomOf="@+id/tvNote"
+            app:layout_constraintStart_toEndOf="@+id/tvNote"
+            app:layout_constraintTop_toTopOf="@+id/tvNote" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

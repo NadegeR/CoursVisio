@@ -34,6 +34,7 @@ public class ListeArticlesActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
 
+            listeArticles = (ArrayList<Article>) msg.obj;
             adapter.updateList(listeArticles);
         }
     }
@@ -76,7 +77,7 @@ public class ListeArticlesActivity extends AppCompatActivity {
             Boolean tri = shPref.getBoolean(ConfigurationActivity.CLE_TRI, false);
 
             //on connecte la base de données
-            //Creation d'1 ArrayList de 3 Articles
+            //Creation d'1 ArrayList de ts les Articles
             ArrayList<Article> listeArticles = (ArrayList<Article>) articleDAO.getAll(tri);
 
             Message msg = new Message();
@@ -95,6 +96,8 @@ public class ListeArticlesActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == R.id.imAdd) {
+            Intent intent = new Intent(this, AjoutArticleActivity.class);
+            startActivity(intent);
 
         } else if (item.getItemId() == R.id.imPreferences) {
             Intent intent = new Intent(this, ConfigurationActivity.class);

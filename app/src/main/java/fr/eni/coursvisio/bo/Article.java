@@ -47,6 +47,14 @@ public class Article implements Parcelable {
         }
     };
 
+    public Article(String nom, String description, float prix, String url, float note) {
+        this.nom = nom;
+        this.description = description;
+        this.prix = prix;
+        this.url = url;
+        this.note = note;
+    }
+
     public int getId() {
         return id;
     }
@@ -82,6 +90,20 @@ public class Article implements Parcelable {
     public float getPrix() {
         return prix;
     }
+
+    public String getPrixString() {
+        return String.format("%.2f", getPrix());
+    }
+
+    public void setPrixString(String prix) {
+        try{
+            setPrix(Float.parseFloat(prix));
+
+        }catch(NumberFormatException e){
+            setPrix(0);
+        }
+    }
+
 
     public void setPrix(float prix) {
         this.prix = prix;

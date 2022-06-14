@@ -30,7 +30,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         edPrix = findViewById(R.id.etPrix);
 
         Boolean tri = shPref.getBoolean(CLE_TRI, false);
-        String prixDef = shPref.getString(CLE_PRIX, "0");
+        String prixDef = shPref.getString(CLE_PRIX, "1");
 
         edPrix.setText(prixDef);
         switchTri.setChecked(tri);
