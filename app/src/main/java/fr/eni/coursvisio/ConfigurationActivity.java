@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 public class ConfigurationActivity extends AppCompatActivity {
 
-    private static final String FILE = "config";
-    private static final String CLE_TRI = "tri";
-    private static final String CLE_PRIX = "prix";
+    public static final String FILE = "config";
+    public static final String CLE_TRI = "tri";
+    public static final String CLE_PRIX = "prix";
 
     private Switch switchTri;
     private EditText edPrix;

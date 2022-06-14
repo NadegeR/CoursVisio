@@ -88,4 +88,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     }
 
 
+    public void updateList(ArrayList<Article> articles) {
+        this.articles = articles;
+        notifyDataSetChanged();
+    }
 }

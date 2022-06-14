@@ -76,7 +76,7 @@ public class ArticleDAO {
 
     }
 
-    public List<Article> getAll() {
+    public List<Article> getAll(boolean tri) {
         List<Article> listeArticles = new ArrayList<>();
 
         String[] listeColonnes = {
@@ -88,11 +88,15 @@ public class ArticleDAO {
                 ArticleContract.COL_URL,
                 ArticleContract.COL_IS_ACHAETE
         };
+
+        //si tri cocher on trie par prix
+        String orderBy = (tri) ? "prix" : null;
+
         Cursor cursor = db.query(
                 ArticleContract.TABLE_NAME, //From
                 listeColonnes,
                 null,
-                null, null, null, null);
+                null, null, null, orderBy);
 
         while (cursor.moveToNext()) {
 
