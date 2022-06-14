@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".AjoutArticleActivity">
+
+
+        <TextView
+            android:id="@+id/tvNon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nom de l'article"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvPrix"
+            app:layout_constraintEnd_toStartOf="@+id/etNom"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvURL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Site"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvNote"
+            app:layout_constraintTop_toBottomOf="@+id/tvDescArt"
+            tools:layout_editor_absoluteX="25dp" />
+
+        <TextView
+            android:id="@+id/tvNote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Note"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvURL"
+            app:layout_constraintTop_toBottomOf="@+id/tvURL" />
+
+        <TextView
+            android:id="@+id/tvPrix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prix"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvDescArt"
+            app:layout_constraintStart_toStartOf="@+id/tvNon"
+            app:layout_constraintTop_toBottomOf="@+id/tvNon" />
+
+        <TextView
+            android:id="@+id/tvDescArt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvURL"
+            app:layout_constraintStart_toStartOf="@+id/tvPrix"
+            app:layout_constraintTop_toBottomOf="@+id/tvPrix" />
+
+        <EditText
+            android:id="@+id/etNom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            app:layout_constraintBottom_toTopOf="@+id/etPrixArt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/etPrixArt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            app:layout_constraintBottom_toTopOf="@+id/etDescArt"
+            app:layout_constraintEnd_toEndOf="@+id/etNom"
+            app:layout_constraintTop_toBottomOf="@+id/etNom" />
+
+        <EditText
+            android:id="@+id/etDescArt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            app:layout_constraintBottom_toTopOf="@+id/edSite"
+            app:layout_constraintEnd_toEndOf="@+id/etPrixArt"
+            app:layout_constraintTop_toBottomOf="@+id/etPrixArt" />
+
+        <EditText
+            android:id="@+id/edSite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/ratingBar2"
+            app:layout_constraintEnd_toEndOf="@+id/etDescArt"
+            app:layout_constraintTop_toBottomOf="@+id/etDescArt" />
+
+        <RatingBar
+            android:id="@+id/ratingBar2"
+            style="@style/Widget.AppCompat.RatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="false"
+            android:numStars="5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/edSite"
+            app:layout_constraintTop_toBottomOf="@+id/edSite" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
