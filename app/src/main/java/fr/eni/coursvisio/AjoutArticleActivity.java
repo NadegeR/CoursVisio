@@ -27,7 +27,7 @@ public class AjoutArticleActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         if (intent.hasExtra("article")) {
-            article = (Article) intent.getSerializableExtra("article");
+            article = (Article) intent.getExtras().get("article");
         } else {
             SharedPreferences shprefs = getSharedPreferences(ConfigurationActivity.FILE, MODE_PRIVATE);
             article = new Article();

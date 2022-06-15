@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:contentDescription="@string/titre_rating"
-        android:isIndicator="false"
+        android:isIndicator="true"
         android:numStars="5"
         app:layout_constraintBottom_toBottomOf="@+id/tvPrice"
         app:layout_constraintEnd_toEndOf="parent"

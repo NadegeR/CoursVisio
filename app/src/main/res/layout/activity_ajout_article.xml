@@ -139,6 +139,7 @@
             android:layout_marginStart="112dp"
             android:rating="@={ajout.note}"
             app:layout_constraintBottom_toBottomOf="@+id/tvNote"
+            app:layout_constraintEnd_toEndOf="@+id/edSite"
             app:layout_constraintStart_toEndOf="@+id/tvNote"
             app:layout_constraintTop_toTopOf="@+id/tvNote" />
 
