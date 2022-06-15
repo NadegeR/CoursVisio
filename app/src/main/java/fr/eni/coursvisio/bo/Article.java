@@ -104,7 +104,6 @@ public class Article implements Parcelable {
         }
     }
 
-
     public void setPrix(float prix) {
         this.prix = prix;
     }
