@@ -10,7 +10,7 @@ public class BindingUtils {
     @BindingAdapter("android:text")
     public static void setFloat(TextView view, float value) {
         if (Float.isNaN(value)) view.setText("");
-        else view.setText( "... you custom formatting" );
+        else view.setText( String.format("%.2f", value) );
     }
 
     @InverseBindingAdapter(attribute = "android:text")
