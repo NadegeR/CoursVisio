@@ -36,6 +36,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         switchTri.setChecked(tri);
 
         switchTri.setOnClickListener(new onClickTri());
+        edPrix.setOnKeyListener(new onClickPrix());
 
         //ou
 //        switchTri.setOnClickListener(v -> {

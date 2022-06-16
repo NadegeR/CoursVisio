@@ -3,13 +3,25 @@ package fr.eni.coursvisio.bo;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Article implements Parcelable {
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
+public class Article implements Parcelable{
+    @PrimaryKey(autoGenerate = true)
     private int id;
+    @ColumnInfo(name = "nom")
     private String nom;
+    @ColumnInfo(name = "description")
     private String description;
+    @ColumnInfo(name = "url")
     private String url;
+    @ColumnInfo(name = "prix")
     private float prix;
+    @ColumnInfo(name = "note")
     private float note;
+    @ColumnInfo(name = "isAchete")
     private boolean isAchete;
 
     public Article() {

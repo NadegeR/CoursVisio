@@ -17,7 +17,9 @@ import java.util.ArrayList;
 
 import fr.eni.coursvisio.adapter.ArticleAdapter;
 import fr.eni.coursvisio.bo.Article;
+import fr.eni.coursvisio.dao.AppDatabase;
 import fr.eni.coursvisio.dao.ArticleDAO;
+import fr.eni.coursvisio.dao.Connexion;
 import fr.eni.coursvisio.dao.DbHelper;
 
 public class ListeArticlesActivity extends AppCompatActivity {
@@ -25,6 +27,8 @@ public class ListeArticlesActivity extends AppCompatActivity {
     private ArticleDAO articleDAO;
 
     private ArticleAdapter adapter;
+
+
 
     ArrayList<Article> listeArticles;
     ListHandler listHandler;
@@ -46,13 +50,16 @@ public class ListeArticlesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liste_articles);
 
+        AppDatabase appDatabase = Connexion.getConnexion(this);
+        articleDAO = appDatabase.articleDAO();
 
-        //Creation d'un objet ArticleDAO pour creer la base de données
-        articleDAO = new ArticleDAO(this);
+        //modifier avec mise en place de ROOM pour gere la bdd
+//        //Creation d'un objet ArticleDAO pour creer la base de données
+//        articleDAO = new ArticleDAO(this);
 
         listHandler = new ListHandler();
         //Pour remplir la BDD
-//        DbHelper.remplirBDD(articleDAO);
+//       DbHelper.remplirBDD(articleDAO);
 
         RecyclerView recyclerView = findViewById(R.id.rv_listeA);
 
@@ -71,14 +78,13 @@ public class ListeArticlesActivity extends AppCompatActivity {
 
         new Thread(() -> {
 
-
             //On recup les preferences de ConfigurationActivity
             SharedPreferences shPref = getSharedPreferences(ConfigurationActivity.FILE, MODE_PRIVATE);
             Boolean tri = shPref.getBoolean(ConfigurationActivity.CLE_TRI, false);
 
             //on connecte la base de données
             //Creation d'1 ArrayList de ts les Articles
-            ArrayList<Article> listeArticles = (ArrayList<Article>) articleDAO.getAll(tri);
+            ArrayList<Article> listeArticles = (ArrayList<Article>) articleDAO.getAll(tri ? "prix" : "nom");
 
             Message msg = new Message();
             msg.obj = listeArticles;

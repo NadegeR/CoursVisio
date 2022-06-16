@@ -6,10 +6,13 @@ import androidx.databinding.DataBindingUtil;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 
 
 import fr.eni.coursvisio.bo.Article;
 import fr.eni.coursvisio.dao.ArticleDAO;
+import fr.eni.coursvisio.dao.Connexion;
 import fr.eni.coursvisio.databinding.ActivityAjoutArticleBinding;
 
 public class AjoutArticleActivity extends AppCompatActivity {
@@ -17,53 +20,63 @@ public class AjoutArticleActivity extends AppCompatActivity {
     //pour recup le biding layout
     ActivityAjoutArticleBinding amb;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    Article a;
 
-        Article article;
-        super.onCreate(savedInstanceState);
-        amb = DataBindingUtil.setContentView(this, R.layout.activity_ajout_article);
+    private class AjoutArticleHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
 
-        Intent intent = getIntent();
+            Intent newIntent;
+            super.handleMessage(msg);
 
-        if (intent.hasExtra("article")) {
-            article = (Article) intent.getExtras().get("article");
-        } else {
-            SharedPreferences shprefs = getSharedPreferences(ConfigurationActivity.FILE, MODE_PRIVATE);
-            article = new Article();
-            article.setPrix(Float.parseFloat(shprefs.getString(ConfigurationActivity.CLE_PRIX, "1")));
+            if (a.getId() == 0) {
+                newIntent = new Intent(AjoutArticleActivity.this, ListeArticlesActivity.class);
+            } else {
+                newIntent = new Intent(AjoutArticleActivity.this, MainActivity.class);
+                newIntent.putExtra("article", a);
+            }
+            startActivity(newIntent);
+            finish();
         }
-        amb.setAjout(article);
-
-        amb.btSave.setOnClickListener(v -> {
-            //recup le binding
-            Article a = amb.getAjout();
-
-            // recup données du binding
-            String nom = a.getNom();
-            String description = a.getDescription();
-            float prix = a.getPrix();
-            String url = a.getUrl();
-            float note = a.getNote();
-
-            // creation d'un objet Article
-            Article newarticle = new Article(nom, description, prix, url, note);
-
-            // enregistrement de l'article dans la base de données
-            ArticleDAO articleDAO = new ArticleDAO(this);
-            articleDAO.insert(newarticle);
-
-
-            Article articleSave = amb.getAjout();
-
-
-
-        });
-
-
-
-
-
-
     }
-}
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+
+            Article article;
+            AjoutArticleHandler ajoutArticleHandler = new AjoutArticleHandler();
+
+            super.onCreate(savedInstanceState);
+            amb = DataBindingUtil.setContentView(this, R.layout.activity_ajout_article);
+
+            Intent intent = getIntent();
+
+            if (intent.hasExtra("article")) {
+                article = (Article) intent.getExtras().get("article");
+            } else {
+                SharedPreferences shprefs = getSharedPreferences(ConfigurationActivity.FILE, MODE_PRIVATE);
+                article = new Article();
+                article.setPrix(Float.parseFloat(shprefs.getString(ConfigurationActivity.CLE_PRIX, "1")));
+            }
+            amb.setAjout(article);
+
+            amb.btSave.setOnClickListener(v -> {
+
+                //recup le binding
+                 a = amb.getAjout();
+
+                new Thread(() -> {
+                    // creation d'un objet ArticleDAO pour creer la base de données
+                    ArticleDAO articleDAO = Connexion.getConnexion(AjoutArticleActivity.this).articleDAO();
+
+                    if (a.getId() == 0) {
+                        articleDAO.insert(a);
+                    } else {
+                        articleDAO.update(a);
+                    }
+                    ajoutArticleHandler.sendMessage(new Message());
+                }).start();
+
+            });
+        }
+    }
