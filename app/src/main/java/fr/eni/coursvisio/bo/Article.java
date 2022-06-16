@@ -91,18 +91,19 @@ public class Article implements Parcelable {
         return prix;
     }
 
-    public String getPrixString() {
-        return String.format("%.2f", getPrix());
-    }
-
-    public void setPrixString(String prix) {
-        try{
-            setPrix(Float.parseFloat(prix));
-
-        }catch(NumberFormatException e){
-            setPrix(0);
-        }
-    }
+    //plus utile avec BindingUtils.setPrix(...)
+//    public String getPrixString() {
+//        return String.format("%.2f", getPrix());
+//    }
+//
+//    public void setPrixString(String prix) {
+//        try{
+//            setPrix(Float.parseFloat(prix));
+//
+//        }catch(NumberFormatException e){
+//            setPrix(0);
+//        }
+//    }
 
     public void setPrix(float prix) {
         this.prix = prix;
